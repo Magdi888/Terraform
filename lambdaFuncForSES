@@ -1,0 +1,17 @@
+
+import boto3
+
+def lambda_handler(event, context):
+    ses_client = boto3.client('ses')
+
+
+
+    response1 = ses_client.send_templated_email(
+        Source='a.magdi888@gmail.com',
+        Destination={
+            'ToAddresses': ['eng.ahmed.magdi.bakr@gmail.com']
+        },
+        ReplyToAddresses=['eng.ahmed.magdi.bakr@gmail.com'],
+        Template='Terraform_Trigger',
+        TemplateData='{"email_address": "eng.ahmed.magdi.bakr@gmail.com"}'
+    )
