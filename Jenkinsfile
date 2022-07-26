@@ -14,7 +14,7 @@ pipeline {
         }
         stage('plan') {
             steps {
-                sh 'terraform plan --var-file dev.tfvars --auto-approve'
+                sh 'terraform plan --var-file dev.tfvars'
             }
         }
     }
