@@ -16,7 +16,7 @@ EOF
 }
 
 
-resource "local_file" "private_key" {
+resource "local_file" "sshconfig" {
     filename = "./config"
     depends_on = [local_file.private_key]
     content = <<EOF
