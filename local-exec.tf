@@ -17,7 +17,7 @@ EOF
 
 
 resource "local_file" "sshconfig" {
-    filename = "./config"
+    filename = "/root/.ssh/config"
     depends_on = [local_file.private_key]
     content = <<EOF
 Host ${aws_instance.application.private_ip}
