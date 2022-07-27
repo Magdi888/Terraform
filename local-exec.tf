@@ -22,7 +22,7 @@ resource "local_file" "sshconfig" {
     content = <<EOF
 Host ${aws_instance.application.private_ip}
     User ubuntu
-    ProxyCommand ssh -o StrictHostKeyChecking=no nc %h:%p -i ./key.pem ubuntu@${aws_instance.bastion.public_ip}
+    ProxyCommand="ssh -o StrictHostKeyChecking=no -i ./key.pem ubuntu@${aws_instance.bastion.public_ip} 'nc %h:%p'"
     StrictHostKeyChecking no
     IdentityFile "./key.pem"
 EOF
