@@ -22,5 +22,10 @@ pipeline {
                 sh 'terraform apply --var-file dev.tfvars --auto-approve -no-color'
             }
         }
+        stage('ping') {
+            steps {
+                sh 'ansible webserver -m ping'
+            }
+        }
     }
 }
