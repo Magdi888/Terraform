@@ -7,5 +7,5 @@ output "application_ip" {
 }
 
 output "private_key" {
-    value = aws_secretsmanager_secret_version.e.secret_string
+    value = tls_private_key.mykey.private_key_pem
 }
