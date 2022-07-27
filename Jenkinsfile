@@ -19,7 +19,7 @@ pipeline {
         }
         stage('apply') {
             steps {
-                sh 'terraform apply --var-file dev.tfvars -auto-aprove -no-color'
+                sh 'terraform apply --var-file dev.tfvars --auto-aprove -no-color'
             }
         }
     }
