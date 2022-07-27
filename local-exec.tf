@@ -21,7 +21,7 @@ resource "local_file" "sshconfig" {
     depends_on = [local_file.private_key]
     content = <<EOF
 Host ${aws_instance.application.private_ip}
-    proxycommand ssh -o StrictHostKeyChecking=no -W %h:%p -i ./key.pem ubuntu@${aws_instance.bastion.public_ip}
+    ProxyCommand ssh -o StrictHostKeyChecking=no -W %h:%p -i ./key.pem ubuntu@${aws_instance.bastion.public_ip}
     StrictHostKeyChecking no
 EOF
 }
