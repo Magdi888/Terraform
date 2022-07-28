@@ -22,14 +22,16 @@ resource "aws_db_instance" "myrds" {
   port = 3306
 }
 ########################################## elastic cache ##################################################
-resource "aws_elasticache_cluster" "elasticache_cluster" {
-  cluster_id           = "redis-cluster"
+resource "aws_elasticache_replication_group" "elasticache_cluster" {
+  replication_group_id = "redis-cluster"
   engine               = "redis"
   node_type            = "cache.t2.micro"
-  num_cache_nodes      = 1
   parameter_group_name = "default.redis3.2.cluster.on"
   engine_version       = "3.2.10"
+  num_node_groups = 1
+  replicas_per_node_group = 1
   port                 = 6379
+  automatic_failover_enabled = true
   subnet_group_name = aws_elasticache_subnet_group.redis_subnets.name
   security_group_ids = [aws_security_group.allow_ssh_and_3306_and_6379.id]
 
