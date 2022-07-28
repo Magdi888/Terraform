@@ -22,8 +22,8 @@ resource "aws_db_instance" "myrds" {
   port = 3306
 }
 ########################################## elastic cache ##################################################
-resource "aws_elasticache_replication_group" "elasticache_cluster" {
-  replication_group_id = "redis-cluster"
+resource "aws_elasticache_replication_group" "elasticache_cluster_group" {
+  replication_group_id = "redis-cluster-group"
   description = "redis cluster"
   engine               = "redis"
   node_type            = "cache.t2.micro"
