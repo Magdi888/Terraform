@@ -23,14 +23,14 @@ resource "local_file" "sshconfig" {
 Host bastion
     User ubuntu
     HostName ${aws_instance.bastion.public_ip}
-    IdentityFile "./key.pem"
+    IdentityFile "/var/jenkins_home/workspace/Terraform/key.pem"
 
 Host ${aws_instance.application.private_ip}
     Port 22
     User ubuntu
     ProxyCommand ssh -o StrictHostKeyChecking=no -A -W %h:%p -q bastion
     StrictHostKeyChecking no
-    IdentityFile "./key.pem"
+    IdentityFile "/var/jenkins_home/workspace/Terraform/key.pem"
 EOF
 }
 
