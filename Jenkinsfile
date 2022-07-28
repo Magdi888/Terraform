@@ -27,10 +27,6 @@ pipeline {
                 sh 'ansible webserver -m ping'
             }
         }
-        stage('destroy') {
-            steps {
-                sh 'terraform destroy --var-file dev.tfvars --auto-approve -no-color'
-            }
-        }
+        
     }
 }

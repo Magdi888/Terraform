@@ -20,10 +20,15 @@ resource "local_file" "sshconfig" {
     filename = "/root/.ssh/config"
     depends_on = [local_file.private_key]
     content = <<EOF
+Host bastion
+    User ubuntu
+    HostName ${aws_instance.bastion.public_ip}
+    IdentityFile "./key.pem"
+
 Host ${aws_instance.application.private_ip}
     Port 22
     User ubuntu
-    ProxyCommand ssh -o StrictHostKeyChecking=no -A -W %h:%p -i ./key.pem ubuntu@${aws_instance.bastion.public_ip}
+    ProxyCommand ssh -o StrictHostKeyChecking=no -A -W %h:%p -q bastion
     StrictHostKeyChecking no
     IdentityFile "./key.pem"
 EOF

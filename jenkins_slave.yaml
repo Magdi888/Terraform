@@ -1,5 +1,6 @@
 - name: Configure as slave
   hosts: webserver
+  remote_user: ubuntu
   tasks:
    - name: update
      apt:
