@@ -50,7 +50,7 @@
    - name: Copy file with owner and permissions
      ansible.builtin.copy:
       src: ./agent.jar
-      dest: ~/bin/agent.jar
+      dest: /bin/agent.jar
       owner: ubuntu
       group: ubuntu
       mode: '0744'
