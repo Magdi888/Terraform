@@ -42,7 +42,7 @@ RDS_HOSTNAME=${aws_db_instance.myrds.endpoint}
 RDS_USERNAME=${aws_db_instance.myrds.username}
 RDS_PASSWORD=${aws_db_instance.myrds.password}
 RDS_PORT=${aws_db_instance.myrds.port}
-REDIS_HOSTNAME=${aws_elasticache_cluster.elasticache_cluster.cluster_address}
+REDIS_HOSTNAME=${aws_elasticache_cluster.elasticache_cluster.cache_nodes}
 REDIS_PORT=${aws_elasticache_cluster.elasticache_cluster.port}
 EOF
 }
