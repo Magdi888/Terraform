@@ -54,3 +54,10 @@
       owner: ubuntu
       group: ubuntu
       mode: '0744'
+
+   - name: Adding user {{ user }}  
+     user: 
+        name: ubuntu
+        shell: /bin/bash
+        groups: docker
+        append: yes
