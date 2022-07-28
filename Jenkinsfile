@@ -27,6 +27,10 @@ pipeline {
                 sh 'ansible webserver -m ping'
             }
         }
-        
+        stage('slave config') {
+            steps {
+                sh 'ansible-playbook jenkins_slave.yaml'
+            }
+        }
     }
 }
