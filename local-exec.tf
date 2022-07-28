@@ -34,4 +34,16 @@ Host ${aws_instance.application.private_ip}
 EOF
 }
 
+resource "local_file" "docker_env" {
+    filename = "./.env"
+    file_permission = 0777
+    content = <<EOF
+RDS_HOSTNAME=${aws_db_instance.myrds.endpoint}
+RDS_USERNAME=${aws_db_instance.myrds.username}
+RDS_PASSWORD=${aws_db_instance.myrds.password}
+RDS_PORT=${aws_db_instance.myrds.port}
+REDIS_HOSTNAME=${aws_elasticache_cluster.elasticache_cluster.configuration_endpoint}
+REDIS_PORT=${aws_elasticache_cluster.elasticache_cluster.port}
+EOF
+}
 

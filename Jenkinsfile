@@ -1,3 +1,4 @@
+def gv
 pipeline {
     agent any
 
@@ -32,5 +33,32 @@ pipeline {
                 sh 'ansible-playbook jenkins_slave.yaml'
             }
         }
+        // stage('start') {
+        //     agent { node { label 'ec2-slave' } }
+        //     steps {
+        //         script {
+        //              gv = load 'script.groovy'
+        //         }
+        //     }
+        // }
+        // stage('build image') {
+        //     agent { node { label 'ec2-slave' } }
+        //     steps {
+        //         script {
+        //             gv.BuildImage()
+        //         }
+                
+        //     }
+        // }
+        // stage('slave config') {
+        //     agent { node { label 'ec2-slave' } }
+        //     steps {
+        //         script {
+        //             gv.Deploy()
+        //         }
+                
+        //     }
+        // }
     }
+
 }
