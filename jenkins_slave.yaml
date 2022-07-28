@@ -46,3 +46,9 @@
           - containerd.io
         state: latest
         update_cache: true
+
+   - name: Copy file with owner and permissions
+     ansible.builtin.get_url:
+      url: http://localhost:8080/jnlpJars/agent.jar
+      dest: ~/bin/agent.jar
+      mode: '0777'
