@@ -48,7 +48,9 @@
         update_cache: true
 
    - name: Copy file with owner and permissions
-     ansible.builtin.get_url:
-      url: http://localhost:8080/jnlpJars/agent.jar
+     ansible.builtin.copy:
+      src: ./agent.jar
       dest: ~/bin/agent.jar
-      mode: '0777'
+      owner: ubuntu
+      group: ubuntu
+      mode: '0744'
