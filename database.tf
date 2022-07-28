@@ -24,6 +24,7 @@ resource "aws_db_instance" "myrds" {
 ########################################## elastic cache ##################################################
 resource "aws_elasticache_replication_group" "elasticache_cluster" {
   replication_group_id = "redis-cluster"
+  description = "redis cluster"
   engine               = "redis"
   node_type            = "cache.t2.micro"
   parameter_group_name = "default.redis3.2.cluster.on"
