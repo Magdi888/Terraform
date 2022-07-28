@@ -55,9 +55,16 @@
       group: ubuntu
       mode: '0744'
 
-   - name: Adding user {{ user }}  
+   - name: Adding user 
      user: 
         name: ubuntu
         shell: /bin/bash
         groups: docker
         append: yes
+
+   - name: Change file ownership, group and permissions
+     ansible.builtin.file:
+        path: /var/run/docker.sock
+        owner: root
+        group: docker
+        mode: '0666'
