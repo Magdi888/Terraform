@@ -35,7 +35,7 @@ EOF
 }
 
 resource "local_file" "docker_env" {
-    filename = "./.env"
+    filename = "./env"
     file_permission = 0777
     content = <<EOF
 RDS_HOSTNAME=${aws_db_instance.myrds.endpoint}
