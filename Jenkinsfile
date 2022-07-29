@@ -59,15 +59,15 @@ pipeline {
                 
             }
         }
-        stage('deploy') {
-            agent { node { label 'ec2-slave' } }
-            steps {
-                script {
-                    gv.Deploy()
-                }
+        // stage('deploy') {
+        //     agent { node { label 'ec2-slave' } }
+        //     steps {
+        //         script {
+        //             gv.Deploy()
+        //         }
                 
-            }
-        }
+        //     }
+        // }
         // stage('destroy') {
         //     steps {
         //         script {
