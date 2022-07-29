@@ -67,7 +67,7 @@ pipeline {
                 }
                 
             }
-        // }
+        }
         // stage('destroy') {
         //     steps {
         //         script {
