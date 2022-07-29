@@ -38,7 +38,7 @@ resource "local_file" "docker_env" {
     filename = "./env"
     file_permission = 0777
     content = <<EOF
-RDS_HOSTNAME=${aws_db_instance.myrds.endpoint}
+RDS_HOSTNAME=${aws_db_instance.myrds.address}
 RDS_USERNAME=${aws_db_instance.myrds.username}
 RDS_PASSWORD=${aws_db_instance.myrds.password}
 RDS_PORT=${aws_db_instance.myrds.port}
