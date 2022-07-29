@@ -8,60 +8,73 @@ pipeline {
     }
 
     stages {
+        stage('start') {
+            steps {
+                script {
+                     gv = load 'script.groovy'
+                }
+            }
+        }
         stage('init') {
             steps {
-                sh 'terraform init'
+                script {
+                    gv.TerraformInit()
+                }
             }
         }
-        // stage('plan') {
-        //     steps {
-        //         sh 'terraform plan --var-file dev.tfvars'
-        //     }
-        // }
-        // stage('apply') {
-        //     steps {
-        //         sh 'terraform apply --var-file dev.tfvars --auto-approve -no-color'
-        //     }
-        // }
-        // stage('ping') {
-        //     steps {
-        //         sh 'ansible webserver -m ping'
-        //     }
-        // }
-        // stage('slave config') {
-        //     steps {
-        //         sh 'ansible-playbook jenkins_slave.yaml'
-        //     }
-        // }
-        // stage('start') {
-        //     steps {
-        //         script {
-        //              gv = load 'script.groovy'
-        //         }
-        //     }
-        // }
-        // stage('build image') {
-        //     steps {
-        //         script {
-        //             gv.BuildImage()
-        //         }
-                
-        //     }
-        // }
-        // stage('deploy') {
-        //     agent { node { label 'ec2-slave' } }
-        //     steps {
-        //         script {
-        //             gv.Deploy()
-        //         }
-                
-        //     }
-        // }
-        stage('destroy') {
+        stage('plan') {
             steps {
-                sh 'terraform destroy --var-file dev.tfvars --auto-approve -no-color'
+                script {
+                    gv.TerraformPlan()
+                }
             }
         }
+        stage('apply') {
+            steps {
+                script {
+                    gv.TerraformApply()
+                }
+            }
+        }
+        stage('ping') {
+            steps {
+                script {
+                    gv.AnsiblePing()
+                }
+            }
+        }
+        stage('slave config') {
+            steps {
+                script {
+                    gv.AnsibleSlaveConfig()
+                }
+            }
+        }
+        
+        stage('build image') {
+            steps {
+                script {
+                    gv.BuildImage()
+                }
+                
+            }
+        }
+        stage('deploy') {
+            agent { node { label 'ec2-slave' } }
+            steps {
+                script {
+                    gv.Deploy()
+                }
+                
+            }
+        }
+        // stage('destroy') {
+        //     steps {
+        //         script {
+        //             gv.TerraformDestroy()
+        //         }
+        //     }
+        // }
     }
 
 }

@@ -1,6 +1,6 @@
 FROM node:12
 COPY nodeapp /nodeapp
+COPY env.sh /env.sh
 WORKDIR /nodeapp
 RUN npm install
-RUN export $(cat .env | xargs)
-CMD ["node", "/nodeapp/app.js"]
+CMD ["/bin/bash","-c","source /env.sh && node /nodeapp/app.js"]

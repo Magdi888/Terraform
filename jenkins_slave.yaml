@@ -47,7 +47,7 @@
         state: latest
         update_cache: true
 
-   - name: Copy file with owner and permissions
+   - name: Copy agent file
      ansible.builtin.copy:
       src: ./agent.jar
       dest: /bin/agent.jar
@@ -55,14 +55,14 @@
       group: ubuntu
       mode: '0744'
 
-   - name: Adding user 
+   - name: Adding slave user to docker group 
      user: 
         name: ubuntu
         shell: /bin/bash
         groups: docker
         append: yes
 
-   - name: Change file ownership, group and permissions
+   - name: Change file ownership, group and permissions of docker daemon
      ansible.builtin.file:
         path: /var/run/docker.sock
         owner: root

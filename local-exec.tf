@@ -35,15 +35,16 @@ EOF
 }
 
 resource "local_file" "docker_env" {
-    filename = "./.env"
+    filename = "./env.sh"
     file_permission = 0777
     content = <<EOF
-RDS_HOSTNAME=${aws_db_instance.myrds.endpoint}
-RDS_USERNAME=${aws_db_instance.myrds.username}
-RDS_PASSWORD=${aws_db_instance.myrds.password}
-RDS_PORT=${aws_db_instance.myrds.port}
-REDIS_HOSTNAME=${aws_elasticache_replication_group.elasticache_cluster_group.configuration_endpoint_address}
-REDIS_PORT=${aws_elasticache_replication_group.elasticache_cluster_group.port}
+#!/bin/bash
+export RDS_HOSTNAME=${aws_db_instance.myrds.endpoint}
+export RDS_USERNAME=${aws_db_instance.myrds.username}
+export RDS_PASSWORD=${aws_db_instance.myrds.password}
+export RDS_PORT=${aws_db_instance.myrds.port}
+export REDIS_HOSTNAME=${aws_elasticache_replication_group.elasticache_cluster_group.configuration_endpoint_address}
+export REDIS_PORT=${aws_elasticache_replication_group.elasticache_cluster_group.port}
 EOF
 }
 
