@@ -1,5 +1,5 @@
 - name: Configure as slave
-  hosts: webserver
+  hosts: application
   remote_user: ubuntu
   tasks:
    - name: update
@@ -49,7 +49,7 @@
 
    - name: Copy agent file
      ansible.builtin.copy:
-      src: ./agent.jar
+      src: /var/jenkins_home/workspace/Terraform/slaveAgent/agent.jar
       dest: /bin/agent.jar
       owner: ubuntu
       group: ubuntu

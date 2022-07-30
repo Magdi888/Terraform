@@ -3,7 +3,7 @@ resource "aws_instance" "bastion" {
   instance_type = var.instance_type
 
   subnet_id = module.network.public_subnet-1_id
-  vpc_security_group_ids = [aws_security_group.allow_ssh.id]
+  vpc_security_group_ids = [aws_security_group.bastion_sg.id]
   key_name = aws_key_pair.generated_key.key_name
   associate_public_ip_address = true
 
@@ -22,7 +22,7 @@ resource "aws_instance" "application" {
   instance_type = var.instance_type
 
   subnet_id = module.network.private_subnet-1_id
-  vpc_security_group_ids = [aws_security_group.allow_ssh_and_3000.id]
+  vpc_security_group_ids = [aws_security_group.application_sg.id]
   key_name = aws_key_pair.generated_key.key_name
 
 

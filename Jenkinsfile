@@ -36,6 +36,13 @@ pipeline {
                 }
             }
         }
+        stage('wait for start up infrastructure') {
+            steps {
+                script {
+                    gv.WaitbeforeConfig()
+                }
+            }
+        }
         stage('ping') {
             steps {
                 script {
@@ -51,30 +58,7 @@ pipeline {
             }
         }
         
-        stage('build image') {
-            steps {
-                script {
-                    gv.BuildImage()
-                }
-                
-            }
-        }
-        stage('deploy') {
-            agent { node { label 'ec2-slave' } }
-            steps {
-                script {
-                    gv.Deploy()
-                }
-                
-            }
-        }
-        // stage('destroy') {
-        //     steps {
-        //         script {
-        //             gv.TerraformDestroy()
-        //         }
-        //     }
-        // }
+        
     }
 
 }

@@ -1,14 +1,14 @@
 resource "local_file" "inventory" {
     filename = "./hosts"
     content = <<EOF
-[webserver]
+[application]
 ${aws_instance.application.private_ip}
 EOF
 }
 
 
 resource "local_file" "private_key" {
-    filename = "./key.pem"
+    filename = "/var/jenkins_home/workspace/Terraform/key.pem"
     file_permission = 0400
     content = <<EOF
 ${tls_private_key.mykey.private_key_pem}
@@ -25,9 +25,10 @@ Host bastion
     HostName ${aws_instance.bastion.public_ip}
     IdentityFile "/var/jenkins_home/workspace/Terraform/key.pem"
 
-Host ${aws_instance.application.private_ip}
+Host application
     Port 22
     User ubuntu
+    HostName ${aws_instance.application.private_ip}
     ProxyCommand ssh -o StrictHostKeyChecking=no -A -W %h:%p -q bastion
     StrictHostKeyChecking no
     IdentityFile "/var/jenkins_home/workspace/Terraform/key.pem"
@@ -35,7 +36,7 @@ EOF
 }
 
 resource "local_file" "docker_env" {
-    filename = "./env"
+    filename = "/var/jenkins_home/workspace/Terraform/env"
     file_permission = 0777
     depends_on = [
       aws_elasticache_replication_group.elasticache_cluster
