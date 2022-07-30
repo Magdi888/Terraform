@@ -36,38 +36,38 @@ pipeline {
                 }
             }
         }
-        stage('ping') {
-            steps {
-                script {
-                    gv.AnsiblePing()
-                }
-            }
-        }
-        stage('slave config') {
-            steps {
-                script {
-                    gv.AnsibleSlaveConfig()
-                }
-            }
-        }
+        // stage('ping') {
+        //     steps {
+        //         script {
+        //             gv.AnsiblePing()
+        //         }
+        //     }
+        // }
+        // stage('slave config') {
+        //     steps {
+        //         script {
+        //             gv.AnsibleSlaveConfig()
+        //         }
+        //     }
+        // }
         
-        stage('build image') {
-            steps {
-                script {
-                    gv.BuildImage()
-                }
+        // stage('build image') {
+        //     steps {
+        //         script {
+        //             gv.BuildImage()
+        //         }
                 
-            }
-        }
-        stage('deploy') {
-            agent { node { label 'ec2-slave' } }
-            steps {
-                script {
-                    gv.Deploy()
-                }
+        //     }
+        // }
+        // stage('deploy') {
+        //     agent { node { label 'ec2-slave' } }
+        //     steps {
+        //         script {
+        //             gv.Deploy()
+        //         }
                 
-            }
-        }
+        //     }
+        // }
         // stage('destroy') {
         //     steps {
         //         script {
