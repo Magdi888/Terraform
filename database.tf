@@ -27,7 +27,6 @@ resource "aws_elasticache_replication_group" "elasticache_cluster_group" {
   description = "redis cluster"
   engine               = "redis"
   node_type            = "cache.t2.micro"
-  parameter_group_name = "default.redis6.x"
   engine_version       = "6.2"
   num_cache_clusters   = 2
   port                 = 6379
