@@ -1,15 +1,15 @@
 #!/usr/bin/env groovy
 
 def TerraformInit() {
-    sh 'terraform -chdir=./Terraform init'
+    sh 'terraform -chdir=Terraform init'
 }
 
 def TerraformPlan() {
-    sh 'terraform -chdir=./Terraform plan --var-file dev.tfvars -no-color'
+    sh 'terraform -chdir=Terraform plan --var-file dev.tfvars -no-color'
 }
 
 def TerraformApply() {
-    sh 'terraform -chdir=./Terraform apply --var-file dev.tfvars --auto-approve -no-color'
+    sh 'terraform -chdir=Terraform apply --var-file dev.tfvars --auto-approve -no-color'
 }
 
 def WaitbeforeConfig() {
@@ -17,7 +17,7 @@ def WaitbeforeConfig() {
 }
 
 def TerraformDestroy() {
-    sh 'terraform -chdir=./Terraform destroy --var-file dev.tfvars --auto-approve -no-color'
+    sh 'terraform -chdir=Terraform destroy --var-file dev.tfvars --auto-approve -no-color'
 }
 
 def AnsibleSlaveConfig() {
