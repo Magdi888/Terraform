@@ -137,6 +137,9 @@ EOF
        - In Launch command: ssh [private host name] java -jar /path/to/agent.jar [agent.jar](https://github.com/Magdi888/Terraform/tree/master/slaveAgent)
 
  ## Sent notification to slack after the success of the pipeline:
+ ![image](https://user-images.githubusercontent.com/91858017/181979732-ec69c0be-247d-4fb9-ab14-b87187dda4aa.png)
+
+ 
   ```
    post {
             success {
