@@ -21,7 +21,7 @@ def TerraformDestroy() {
 }
 
 def AnsibleSlaveConfig() {
-    sh 'ansible-playbook jenkins_slave.yaml'
+    sh 'ansible-playbook jenkins_slave_playbook.yaml'
 }
 
 def AnsiblePing() {
