@@ -1,5 +1,5 @@
 resource "local_file" "inventory" {
-    filename = "./hosts"
+    filename = "/var/jenkins_home/workspace/Terraform/hosts"
     content = <<EOF
 [application]
 ${aws_instance.application.private_ip}

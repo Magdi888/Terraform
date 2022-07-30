@@ -25,7 +25,7 @@ def AnsibleSlaveConfig() {
 }
 
 def AnsiblePing() {
-    sh 'ansible webserver -m ping'
+    sh 'ansible application -m ping'
 }
 
 

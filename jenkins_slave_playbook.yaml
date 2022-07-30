@@ -55,6 +55,14 @@
       group: ubuntu
       mode: '0744'
 
+   - name: Copy ENV file
+     ansible.builtin.copy:
+      src: /var/jenkins_home/workspace/Terraform/env
+      dest: /home/ubuntu/env
+      owner: ubuntu
+      group: ubuntu
+      mode: '0744'
+
    - name: Adding slave user to docker group 
      user: 
         name: ubuntu
