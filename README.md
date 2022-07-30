@@ -138,4 +138,4 @@ EOF
         }
   ```
   
-  ## Triger another pipleline to build and deploy the code on the slave jenkins node
+### Triger another pipleline to build and deploy the code on the slave jenkins node [CI/CD Pipeline](https://github.com/Magdi888/AWS-CI-CD-Pipeline-Nodejs_app)
