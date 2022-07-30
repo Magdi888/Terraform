@@ -60,5 +60,13 @@ pipeline {
         
         
     }
+    post {
+          success {
+              slackSend (message:"Infrastucture provisioned successfully - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)")
+          }
+          failure {
+              slackSend (message:"Infrastucture provisioned  - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)")
+          }
+      }
 
 }
