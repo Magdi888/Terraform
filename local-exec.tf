@@ -37,12 +37,15 @@ EOF
 resource "local_file" "docker_env" {
     filename = "./env"
     file_permission = 0777
+    depends_on = [
+      aws_elasticache_replication_group.elasticache_cluster
+    ]
     content = <<EOF
 RDS_HOSTNAME=${aws_db_instance.myrds.address}
 RDS_USERNAME=${aws_db_instance.myrds.username}
 RDS_PASSWORD=${aws_db_instance.myrds.password}
 RDS_PORT=${aws_db_instance.myrds.port}
-
+REDIS_HOSTNAME=${aws_elasticache_replication_group.elasticache_cluster_group.configuration_endpoint_address}
 REDIS_PORT=${aws_elasticache_replication_group.elasticache_cluster_group.port}
 EOF
 }
