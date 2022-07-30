@@ -74,10 +74,9 @@ Host bastion
     HostName ${aws_instance.bastion.public_ip}
     IdentityFile "/var/jenkins_home/workspace/Terraform/key.pem"
 
-Host application
+Host ${aws_instance.application.private_ip}
     Port 22
     User ubuntu
-    HostName ${aws_instance.application.private_ip}
     ProxyCommand ssh -o StrictHostKeyChecking=no -A -W %h:%p -q bastion
     StrictHostKeyChecking no
     IdentityFile "/var/jenkins_home/workspace/Terraform/key.pem"
@@ -89,7 +88,7 @@ EOF
   By creating local_file resource and extract the privateIp of application vm
    ```
    resource "local_file" "inventory" {
-    filename = "./hosts"
+    filename = "/var/jenkins_home/workspace/Terraform/hosts"
     content = <<EOF
 [application]
 ${aws_instance.application.private_ip}

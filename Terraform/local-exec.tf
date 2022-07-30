@@ -25,10 +25,9 @@ Host bastion
     HostName ${aws_instance.bastion.public_ip}
     IdentityFile "/var/jenkins_home/workspace/Terraform/key.pem"
 
-Host application
+Host ${aws_instance.application.private_ip}
     Port 22
     User ubuntu
-    HostName ${aws_instance.application.private_ip}
     ProxyCommand ssh -o StrictHostKeyChecking=no -A -W %h:%p -q bastion
     StrictHostKeyChecking no
     IdentityFile "/var/jenkins_home/workspace/Terraform/key.pem"
