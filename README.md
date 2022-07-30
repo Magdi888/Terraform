@@ -97,7 +97,7 @@ EOF
    ```
    
  ### Creating ENV file for the NodeJS App:
-  By creating local_file resource and extract the environmental variables used in NodeJs App
+  By creating local_file resource and extract the environmental variables used in NodeJs App.
    ```
    resource "local_file" "docker_env" {
     filename = "/var/jenkins_home/workspace/Terraform/env"
@@ -114,6 +114,16 @@ REDIS_HOSTNAME=${aws_elasticache_replication_group.elasticache_cluster.primary_e
 REDIS_PORT=${aws_elasticache_replication_group.elasticache_cluster.port}
 EOF
 }
+   ```
+  And copy that file by ansible to slave node
+   ```
+   - name: Copy ENV file
+     ansible.builtin.copy:
+      src: /var/jenkins_home/workspace/Terraform/env
+      dest: /home/ubuntu/env
+      owner: ubuntu
+      group: ubuntu
+      mode: '0744'
    ```
  
  ## Configure Private VM as Jenkins slave node:
