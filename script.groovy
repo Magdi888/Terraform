@@ -2,7 +2,6 @@
 
 def TerraformInit() {
     sh 'terraform init'
-    sh 'terraform state rm "aws_elasticache_replication_group.elasticache_cluster_group"'
 }
 
 def TerraformPlan() {
