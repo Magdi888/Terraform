@@ -27,9 +27,9 @@ resource "aws_elasticache_replication_group" "elasticache_cluster_group" {
   description = "redis cluster"
   engine               = "redis"
   node_type            = "cache.t2.micro"
-  parameter_group_name = "default.redis6.x.cluster.on"
+  parameter_group_name = "default.redis6.x"
   engine_version       = "6.2"
-  num_cache_clusters       = 2
+  num_cache_clusters   = 2
   port                 = 6379
   automatic_failover_enabled = true
   subnet_group_name = aws_elasticache_subnet_group.redis_subnets.name
