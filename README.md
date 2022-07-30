@@ -25,8 +25,8 @@
  ```
  ## Add AWS credentials to Jenkins server:
  - Create two credentials with type secret text:
-   - One for AWS_ACCESS_KEY_ID and set it with your account access key id
-   - The other one AWS_SECRET_ACCESS_KEY and set it with your account secret access key 
+   - One for AWS_ACCESS_KEY_ID and set it with your account access key id.
+   - The other one AWS_SECRET_ACCESS_KEY and set it with your account secret access key.
  ## Define AWS credentials in the pipeline:
   Define them as environmental variables in the pipeline, Terraform will use them.
    ```
